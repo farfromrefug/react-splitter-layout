@@ -174,7 +174,7 @@ class SplitterLayout extends React.Component {
     return (
       <div className={containerClasses} ref={(c) => { this.container = c; }}>
         {wrappedChildren[0]}
-        {wrappedChildren.length > 1 &&
+        {this.props.resizable && wrappedChildren.length > 1 &&
           <div
             className="layout-splitter"
             ref={(c) => { this.splitter = c; }}
@@ -189,6 +189,7 @@ class SplitterLayout extends React.Component {
 
 SplitterLayout.propTypes = {
   customClassName: React.PropTypes.string,
+  resizable: React.PropTypes.bool,
   vertical: React.PropTypes.bool,
   percentage: React.PropTypes.bool,
   primaryIndex: React.PropTypes.number,
@@ -200,6 +201,7 @@ SplitterLayout.propTypes = {
 
 SplitterLayout.defaultProps = {
   customClassName: '',
+  resizable: true,
   vertical: false,
   percentage: false,
   primaryIndex: 0,
