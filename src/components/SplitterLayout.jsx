@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Pane from './Pane';
 import '../stylesheets/index.css';
 
@@ -51,7 +52,7 @@ class SplitterLayout extends React.Component {
         top: containerRect.top + ((containerRect.height - splitterRect.height) / 2)
       }, false);
     }
-    this.setState({ secondaryPaneSize });
+    this.setSecondaryPaneSize(secondaryPaneSize);
   }
 
   componentWillUnmount() {
@@ -105,6 +106,13 @@ class SplitterLayout extends React.Component {
     return secondaryPaneSize;
   }
 
+  setSecondaryPaneSize(secondaryPaneSize) {
+    if (typeof this.props.onSecondaryPaneSizeChange === 'function') {
+      this.props.onSecondaryPaneSizeChange(secondaryPaneSize);
+    }
+    this.setState({ secondaryPaneSize });
+  }
+
   handleResize() {
     if (this.splitter && !this.props.percentage) {
       const containerRect = this.container.getBoundingClientRect();
@@ -113,7 +121,7 @@ class SplitterLayout extends React.Component {
         left: splitterRect.left,
         top: splitterRect.top
       }, false);
-      this.setState({ secondaryPaneSize });
+      this.setSecondaryPaneSize(secondaryPaneSize);
     }
   }
 
@@ -126,7 +134,7 @@ class SplitterLayout extends React.Component {
         top: e.clientY
       }, true);
       clearSelection();
-      this.setState({ secondaryPaneSize });
+      this.setSecondaryPaneSize(secondaryPaneSize);
     }
   }
 
@@ -188,19 +196,21 @@ class SplitterLayout extends React.Component {
 }
 
 SplitterLayout.propTypes = {
-  customClassName: React.PropTypes.string,
-  resizable: React.PropTypes.bool,
-  vertical: React.PropTypes.bool,
-  percentage: React.PropTypes.bool,
-  primaryIndex: React.PropTypes.number,
-  primaryMinSize: React.PropTypes.number,
-  secondaryInitialSize: React.PropTypes.number,
-  secondaryMinSize: React.PropTypes.number,
-  children: React.PropTypes.arrayOf(React.PropTypes.node),  
+  onSecondaryPaneSizeChange: PropTypes.func,
+  customClassName: PropTypes.string,
+  resizable: PropTypes.bool,
+  vertical: PropTypes.bool,
+  percentage: PropTypes.bool,
+  primaryIndex: PropTypes.number,
+  primaryMinSize: PropTypes.number,
+  secondaryInitialSize: PropTypes.number,
+  secondaryMinSize: PropTypes.number,
+  children: PropTypes.arrayOf(PropTypes.node),
   style: React.CSSProperties
 };
 
 SplitterLayout.defaultProps = {
+  onSecondaryPaneSizeChange: undefined,
   style: null,
   customClassName: '',
   resizable: true,

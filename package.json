@@ -1,6 +1,6 @@
 {
   "name": "react-splitter-layout2",
-  "version": "0.2.5",
+  "version": "0.2.11",
   "description": "A simple split layout for React and modern browsers",
   "keywords": [
     "react",
@@ -49,7 +49,8 @@
     "webpack": "^1.14.0"
   },
   "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0"
+    "prop-types": "^15.6.0",
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   },
   "scripts": {
     "prepublish": "webpack --progress -p",
