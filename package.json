@@ -1,6 +1,6 @@
 {
   "name": "react-splitter-layout2",
-  "version": "0.2.13",
+  "version": "0.3.2",
   "description": "A simple split layout for React and modern browsers",
   "keywords": [
     "react",
@@ -17,11 +17,10 @@
   "bugs": {
     "url": "https://github.com/farfromrefug/react-splitter-layout/issues"
   },
-  "main": "lib/index.js",
-  "files": [
-    "lib/*"
-  ],
+  "main": "SplitterLayout",
   "devDependencies": {
+    "@types/prop-types": "^15.5.6",
+    "@types/react": "^16.4.16",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-plugin-istanbul": "^3.1.2",
@@ -53,11 +52,7 @@
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   },
   "scripts": {
-    "prepublish": "webpack --progress -p",
-    "build": "webpack --progress",
-    "lint": "eslint src/**/*.js*",
-    "test": "mocha --require babel-register --require ignore-styles test/*.spec.js*",
-    "coverage": "nyc --extension .jsx npm test",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "prepublish": "tsc",
+    "build": "tsc"
   }
 }
